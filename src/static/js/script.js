@@ -1,3 +1,5 @@
+const socket = io();
+
 const button = document.querySelector('button');
 
 button.addEventListener('click', () => {
@@ -7,3 +9,5 @@ button.addEventListener('click', () => {
             console.log(result);
         });
 });
+
+socket.on('test_event', message => alert(message));
