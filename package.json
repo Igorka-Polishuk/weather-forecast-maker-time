@@ -1,0 +1,29 @@
+{
+  "name": "web-middle-maker-time",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Igorka-Polishuk/weather-forecast-maker-time.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Igorka-Polishuk/weather-forecast-maker-time/issues"
+  },
+  "homepage": "https://github.com/Igorka-Polishuk/weather-forecast-maker-time#readme",
+  "dependencies": {
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
