@@ -1,3 +1,4 @@
+const socket = io();
 
 const weatherInfoBlock = document.querySelector('.weather__info');
 const cityHeaderForm = document.querySelector('.header__form');
