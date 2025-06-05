@@ -1,5 +1,5 @@
-const socket = io();
 
+<<<<<<< HEAD
 const weatherInfoBlock = document.querySelector('.weather__info');
 const cityHeaderForm = document.querySelector('.header__form');
 
@@ -41,3 +41,5 @@ cityHeaderForm.addEventListener('submit', event => {
         `;
     });
 });
+=======
+>>>>>>> db0248c330aee191f3827579ee4478d29728c73b
