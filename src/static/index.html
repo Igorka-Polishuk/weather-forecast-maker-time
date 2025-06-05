@@ -3,10 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="./css/root.css">
+    <link rel="stylesheet" href="./css/index.css">
     <title>Document</title>
 </head>
 <body>
-    <button>Get</button>
+    <div class="wrapper">
+        <header class="header__block">
+            <div class="header__block-button-h1">
+                <button id="settings-button">
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                </button>
+                <h1 id="main-title">⛅ Прогноз погоди</h1>
+            </div>
+            <form class="header__form">
+                <input type="text" name="city" id="city" placeholder="Ваше місто">
+                <input type="submit" value="Пошук">
+            </form>
+        </header>
+        <main class="main__block">
+            <div class="weather__info">
+            </div>
+            <div class="settings__panel">
+                <div class="change__background__section">
+                    
+                </div>
+            </div>
+        </main>
+    </div>
 
     <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
     <script src="./js/script.js"></script>

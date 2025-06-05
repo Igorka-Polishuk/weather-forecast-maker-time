@@ -1,0 +1,102 @@
+.wrapper {
+    background: linear-gradient(90deg,rgb(166, 255, 248) 0%, rgb(0, 140, 255) 100%);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 140px;
+}
+
+.header__block,
+.main__block,
+.weather__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.header__block {
+    align-items: center;
+    gap: 16px;
+}
+.header__block-button-h1 {
+    display: flex;
+    width: 100%;
+}
+.header__block-button-h1 #settings-button {
+    justify-self: flex-start;
+}
+.header__block-button-h1 #main-title { margin: 0 auto; }
+.header__form {
+    display: flex;
+    gap: 12px;
+}
+.header__block-button-h1 #settings-button {
+    background-color: rgba(0, 0, 240, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    padding: 12px;
+    font-size: 24px;
+    color: white;
+    border-radius: 50%;
+    transition-duration: var(--ordinary-transition-duration);
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(0, 0, 240, 0.8);
+        transform: translateY(10px);
+    }
+
+}
+.header__form input[type="text"] {
+    font-size: 24px;
+    border-radius: 15px;
+    padding: 5px 10px;
+    border: none;
+}
+.header__form input[type="submit"] {
+    background-color: rgba(0, 0, 210, 0.5);
+    border: none;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    transition-duration: var(--ordinary-transition-duration);
+
+    &:hover { background-color: rgba(0, 0, 255, 0.8); }
+}
+
+.weather__info {
+    background: rgba(0, 255, 0, 0.15);
+    backdrop-filter: blur(20px);
+    width: 60vw;
+    height: 50vh;
+    justify-self: center;
+    align-self: center;
+    border-radius: 15px;
+    border: 1px solid rgb(200, 200, 200);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.weather__info__addiction {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+}
+.weather__info__addiction__block {
+    display: grid;
+    gap: 20px;
+    backdrop-filter: blur(18px);
+    background-color: rgba(0, 150, 150, 0.25);
+    padding: 20px 0;
+    border: 1px solid rgba(190, 190, 190, 0.25);
+    transition-duration: var(--ordinary-transition-duration);
+
+    &:hover {
+        background-color: rgba(120, 120, 120, 0.4);
+        transform: translateY(-10px);
+    }
+}

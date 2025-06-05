@@ -1,0 +1,21 @@
+:root {
+    --primary-fond-color: white;
+    --primary-font-family: sans-serif;
+    --ordinary-transition-duration: 0.2s;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+html,
+body { height: 100%; }
+
+.wrapper {
+    min-height: 100%;
+    color: var(--primary-fond-color);
+    font-family: var(--primary-font-family);
+}
