@@ -2,6 +2,7 @@
     --primary-fond-color: white;
     --primary-font-family: sans-serif;
     --ordinary-transition-duration: 0.2s;
+    --start-background: linear-gradient(90deg,rgb(166, 255, 248) 0%, rgb(0, 140, 255) 100%);
 }
 
 * {
@@ -18,4 +19,5 @@ body { height: 100%; }
     min-height: 100%;
     color: var(--primary-fond-color);
     font-family: var(--primary-font-family);
+    background: var(--start-background);
 }

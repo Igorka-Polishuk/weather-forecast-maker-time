@@ -1,5 +1,4 @@
 .wrapper {
-    background: linear-gradient(90deg,rgb(166, 255, 248) 0%, rgb(0, 140, 255) 100%);
     padding: 8px;
     display: flex;
     flex-direction: column;
@@ -64,8 +63,13 @@
     &:hover { background-color: rgba(0, 0, 255, 0.8); }
 }
 
+.main__block {
+    display: flex;
+    gap: 50px;
+}
+
 .weather__info {
-    background: rgba(0, 255, 0, 0.15);
+    background: rgba(34, 41, 34, 0.15);
     backdrop-filter: blur(20px);
     width: 60vw;
     height: 50vh;
@@ -75,9 +79,10 @@
     border: 1px solid rgb(200, 200, 200);
     padding: 20px;
     text-align: center;
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 16px;
+    transition-duration: var(--ordinary-transition-duration);
 }
 
 .weather__info__addiction {
@@ -98,5 +103,40 @@
     &:hover {
         background-color: rgba(120, 120, 120, 0.4);
         transform: translateY(-10px);
+    }
+}
+
+.future__weather__info {
+    width: 60vw;
+    height: 25vh;
+    background: rgba(34, 41, 34, 0.15);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+    gap: 40px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px 30px;
+    display: none;
+    margin: 100px;
+}
+
+.future__weahter__block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(14, 17, 14, 0.15);
+    height: 100%;
+    width: 14%;
+    border-radius: 15px;
+    gap: 14px;
+    transition-duration: var(--ordinary-transition-duration);
+    cursor: pointer;
+
+    &:hover {
+        margin: 0 0 10px 0;
     }
 }
