@@ -9,8 +9,6 @@ function makeGetRequest(url) {
             answer.on('end', () => {
                 finalData = JSON.parse(finalData);
 
-                console.log(finalData);
-
                 if (finalData.message)
                     reject(finalData);
 

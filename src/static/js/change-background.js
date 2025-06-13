@@ -26,6 +26,4 @@ function parseWeatherDescription(description) {
         WEATHER_DESCRIPTIONS['небо']();
 }
 
-// WEATHER_DESCRIPTIONS['хмарно']();
-
 export { parseWeatherDescription };

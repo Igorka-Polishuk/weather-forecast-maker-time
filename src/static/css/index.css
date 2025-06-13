@@ -49,6 +49,11 @@
     border-radius: 15px;
     padding: 5px 10px;
     border: none;
+    transition-duration: var(--ordinary-transition-duration);
+
+    &:hover {
+        box-shadow: 0 0 10px black;
+    }
 }
 .header__form input[type="submit"] {
     background-color: rgba(0, 0, 210, 0.5);
@@ -60,7 +65,10 @@
     cursor: pointer;
     transition-duration: var(--ordinary-transition-duration);
 
-    &:hover { background-color: rgba(0, 0, 255, 0.8); }
+    &:hover {
+        box-shadow: 0 0 10px black;
+        background-color: rgba(0, 0, 255, 0.8);
+    }
 }
 
 .main__block {
@@ -121,6 +129,8 @@
     padding: 20px 30px;
     display: none;
     margin: 100px;
+    border-radius: 15px;
+    border: 1px solid rgb(200, 200, 200);
 }
 
 .future__weahter__block {
@@ -139,4 +149,39 @@
     &:hover {
         margin: 0 0 10px 0;
     }
+}
+
+#select-base-city {
+    background-color: rgba(0, 255, 42, 0.712);
+    backdrop-filter: blur(30px);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition-duration: var(--ordinary-transition-duration);
+
+    &:hover {
+        background-color: rgba(0, 255, 42, 0.938);
+        box-shadow: 0 0 10px black;
+    }
+}
+
+#select-lately-city {
+    background-color: rgba(255, 174, 0, 0.712);
+    backdrop-filter: blur(30px);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition-duration: var(--ordinary-transition-duration);
+
+    &:hover {
+        background-color: rgba(255, 115, 0, 0.938);
+        box-shadow: 0 0 10px black;
+        color: white;
+    }
+}
+
+#select-lately-city option[value="delete_all"] {
+    background-color: red;
 }
