@@ -1,7 +1,7 @@
 import { deleteAllRecentCities } from './process-local-storage.js';
 
 const selectCity = document.querySelector('#select-base-city');
-const selectRecentCity = document.querySelector("#select-lately-city");
+const selectRecentCity = document.querySelector("#select-recent-city");
 const inputCity = document.querySelector('#city');
 
 selectCity.addEventListener('change', () => {

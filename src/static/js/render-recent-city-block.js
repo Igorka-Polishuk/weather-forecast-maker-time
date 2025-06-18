@@ -1,4 +1,4 @@
-const selectRecentCity = document.querySelector("#select-lately-city");
+const selectRecentCity = document.querySelector("#select-recent-city");
 
 function renderRecentCityBlock(cities) {
     let finalContext = `

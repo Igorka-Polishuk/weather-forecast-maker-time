@@ -2,7 +2,7 @@ import { renderMainWeatherBlock } from './render-main-weather-block.js';
 import { parseWeatherDescription } from './change-background.js';
 import { renderFutureWeatherBlocks } from './render-future-weather-blocks.js';
 import { rememberNewCity, STORAGE_KEY } from './process-local-storage.js';
-import { renderRecentCityBlock } from './render-lately-city-block.js';
+import { renderRecentCityBlock } from './render-recent-city-block.js';
 
 const socket = io();
 
