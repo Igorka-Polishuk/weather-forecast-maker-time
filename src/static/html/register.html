@@ -10,7 +10,7 @@
 <body>
     <div class="wrapper addiction__page">
         <h1>Зареєструйтесь</h1>
-        <form method="post" class="main__form">
+        <form method="post" class="main__form register__form">
             <div class="form__block">
                 <p>Ім'я</p>
                 <input type="text" id="login" name="login">
@@ -20,13 +20,14 @@
                 <input type="password" id="password" name="password">
             </div>
             <div class="form__block">
-                <input type="submit" value="Зареєструватися">
+                <input type="submit" value="Зареєструватися" id="register-button">
             </div>
         </form>
     </div>
-</body>
 
-<script src="https://cdn.socket.io/4.5.3/socket.io.min.js"
+    <script src="https://cdn.socket.io/4.5.3/socket.io.min.js"
     integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi"
     crossorigin="anonymous"></script>
+    <script src="../js/register-login-user.js"></script>
+</body>
 </html>

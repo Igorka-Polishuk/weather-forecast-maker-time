@@ -1,7 +1,8 @@
 const databaseWrapper = require('sqlite');
 const sqlite3 = require('sqlite3').verbose();
-const bcrypt = require('bcrypt');
 const { join } = require('path');
+
+const { hashPassword, comparePasswords } = require('./hash-compare-passwords.js');
 
 const DATABASE_PATH = join(__dirname, '../', '../', 'database.db');
 
@@ -30,16 +31,15 @@ class SQLiteSystem {
                 await this.#database.run(`
                     CREATE TABLE users (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        login VARCHAR(32) NOT NULL UNIQUE
+                        login VARCHAR(32) NOT NULL UNIQUE,
+                        password TEXT NOT NULL
                     );    
                 `);
                 await this.#database.run(`
                     CREATE TABLE recent_cities (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         user_id INTEGER NOT NULL,
-                        city_name VARCHAR(128) NOT NULL,
-
-                        FOREIGN KEY (user_id) REFERENCES users(id)
+                        city_name VARCHAR(128) NOT NULL
                     );    
                 `);
 
@@ -48,13 +48,11 @@ class SQLiteSystem {
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         user_id INTEGER NOT NULL,
                         city_name VARCHAR(128) NOT NULL
-
-                        FOREIGN KEY (user_id) REFERENCES users(id);
                     );    
                 `);
-
-                this.#isInitialized = true;
             }
+
+            this.#isInitialized = true;
         } catch (error) {
             if (!this.#database) throw error;
             console.error(`Error: ${error.message}`);
@@ -72,33 +70,49 @@ class SQLiteSystem {
     }
 
     async closeDatabase() {
-        if (!this.#database) throw new Error(`Database is not initialized yet...`);
+        if (!this.#database) throw new Error(`База даних ще не ініціалізована`);
 
         await this.#database.close();
+        this.#isInitialized = false;
+        this.#database = null;
     }
 
-    async getPeople() {
-        if (!this.#database) throw new Error(`Database is not initialized yet...`);
+    async addNewUser(user) {
+        await this.awaitForDatabase();
 
-        return await this.#database.all(`SELECT * FROM users;`);
-    }
-
-    async addNewUser(login) {
         try {
-            if (!this.#database) throw new Error(`Database is not initialized yet...`);
+            if (!this.#database) throw new Error(`База даних ще не ініціалізована`);
 
             const isThisUserExisting = await this.#database.get(`
                     SELECT * FROM users
                     WHERE login = ?;   
-            `, [login]);
+            `, [user.login]);
 
-            if (isThisUserExisting) throw new Error('This user have already existed...');
+            if (isThisUserExisting) throw new Error('Під цим ім\'ям вже зареєстрований інший користувач');
+
+            const hashedPassword = await hashPassword(user.password);
 
             await this.#database.run(`
-                INSERT INTO users (login) VALUES (?);    
-            `, [login]);
+                INSERT INTO users (login, password) VALUES (?, ?);    
+            `, [user.login, hashedPassword]);
+
+            return {message: 'Користувач успішно був зареєстрований'};
         } catch (error) {
-            throw new Error(error.message);
+            return {message: error.message};
+        }
+    }
+
+    async getPeople() {
+        await this.awaitForDatabase();
+
+        try {
+            if (!this.#database || !this.#isInitialized) 
+                throw new Error(`База даних ще не ініціалізована`);
+
+            const result =  await this.#database.all(`SELECT * FROM users;`);
+            console.log(result);
+        } catch (error) {
+            throw error;
         }
     }
 }
@@ -106,9 +120,8 @@ class SQLiteSystem {
 // (async () => {
 //     try {
 //         const db = new SQLiteSystem();
-//         await new Promise((resolve, reject) => { setTimeout(resolve, 1000) });
-//         const result = await db.getPeople();
-//         console.log(result);
+//         await db.getPeople();
+//         await db.closeDatabase();
 //     } catch (error) {
 //         console.error(`Error: ${error.message}`);
 //     }
