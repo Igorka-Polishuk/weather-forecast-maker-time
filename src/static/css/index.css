@@ -185,3 +185,80 @@
 #select-lately-city option[value="delete_all"] {
     background-color: red;
 }
+
+.account__panel {
+    border: 2px solid grey;
+    position: absolute;
+    top: 0;
+    left: -410px;
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    z-index: 2;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    display: grid;
+    grid-template-areas: 
+    "main-title main-title main-title button-close"
+    "register-button register-button register-button register-button"
+    "sub-title-login sub-title-login sub-title-login sub-title-login"
+    "login-button login-button login-button login-button"
+    "bottom-subtitle bottom-subtitle bottom-subtitle bottom-subtitle";
+    gap: 14px;
+    transition-duration: var(--ordinary-transition-duration);
+
+    & h2 { grid-area: main-title; }
+    & #close-account-panel {
+        grid-area: button-close;
+        background-color: red;
+        color: white;
+        border: 1px solid black;
+        cursor: pointer;
+    }
+    & #register-button,
+    & #login-button {
+        width: 50%;
+        padding: 12px 18px;
+        background-color: green;
+        color: white;
+        border: none;
+        font-size: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition-duration: var(--ordinary-transition-duration);
+
+        &:hover {
+            box-shadow: 0 0 10px black;
+        }  
+    }
+    & #register-button {
+        grid-area: register-button; 
+    }
+    & #login-button {
+        grid-area: login-button;
+    }
+    & h3#login-subtitle { grid-area: sub-title-login; }
+    & h3#bottom-subtitle { grid-area: bottom-subtitle; }
+}
+
+#open-account-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 14px 0 0 14px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    background-color: blue;
+    color: white;
+    border: 2px solid black;
+    cursor: pointer;
+    transition-duration: var(--ordinary-transition-duration);
+
+    &:hover {
+        box-shadow: 0 0 10px black;
+        transform: scale(1.2, 1.2);
+    }
+}

@@ -7,6 +7,7 @@ const DATABASE_PATH = join(__dirname, '../', '../', 'database.db');
 
 class SQLiteSystem {
     #database;
+    #isInitialized = false;
 
     constructor() {
         this.#initializeDatabase();
@@ -41,18 +42,54 @@ class SQLiteSystem {
                         FOREIGN KEY (user_id) REFERENCES users(login)
                     );    
                 `);
+
+                this.#isInitialized = true;
             }
         } catch (error) {
             if (!this.#database) throw error;
             console.error(`Error: ${error.message}`);
             await this.#database.close();
+            this.#isInitialized = false;
         }
+    }
+
+    async awaitForDatabase() {
+        while (!this.#isInitialized) {
+            await new Promise((resolve, reject) => { setTimeout(resolve, 10); });
+        }
+
+        return;
+    }
+
+    async closeDatabase() {
+        if (!this.#database) throw new Error(`Database is not initialized yet...`);
+
+        await this.#database.close();
     }
 
     async getPeople() {
         if (!this.#database) throw new Error(`Database is not initialized yet...`);
 
         return await this.#database.all(`SELECT * FROM users;`);
+    }
+
+    async addNewUser(login) {
+        try {
+            if (!this.#database) throw new Error(`Database is not initialized yet...`);
+
+            const isThisUserExisting = await this.#database.get(`
+                    SELECT * FROM users
+                    WHERE login = ?;   
+            `, [login]);
+
+            if (isThisUserExisting) throw new Error('This user have already existed...');
+
+            await this.#database.run(`
+                INSERT INTO users (login) VALUES (?);    
+            `, [login]);
+        } catch (error) {
+            throw new Error(error.message);
+        }
     }
 }
 
@@ -67,4 +104,4 @@ class SQLiteSystem {
 //     }
 // })();
 
-export { SQLiteSystem };
+module.exports = { SQLiteSystem };

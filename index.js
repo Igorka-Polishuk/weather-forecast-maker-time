@@ -5,12 +5,14 @@ const { Server } = require('socket.io');
 
 const { processRequest } = require('./src/modules/process-requests.js');
 const { makeGetRequest } = require('./src/modules/make-https-requests.js');
+const { SQLiteSystem } = require('./src/modules/process-database-requests.js');
 
 const PORT = process.env.PORT || 3000;
 const API_KEY = process.env.API_KEY;
 const CURRENT_WEATHER_API = process.env.CURRENT_WEATHER_API;
 const FUTURE_WEATHER_API = process.env.FUTURE_WEATHER_API;
-const CITY_COORDINATES_GETTING_API = process.env.CITY_COORDINATES_GETTING_API;
+
+let databaseController = null;
 
 const server = createServer((request, response) => {
     processRequest(request.url, response);
@@ -33,5 +35,19 @@ io.on('connection', async socket => {
             .catch(error => {
                 socket.emit('error_access_weather_forecast', error);
             });
+
+        try {
+            databaseController = new SQLiteSystem();
+            await databaseController.awaitForDatabase();
+
+            const users = await databaseController.getPeople();
+            console.log(users);
+
+            await databaseController.closeDatabase();
+        } catch (error) {
+            await databaseController.closeDatabase();
+
+            console.log(error.message);
+        }
     });
 });

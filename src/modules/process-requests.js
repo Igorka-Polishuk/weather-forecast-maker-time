@@ -23,6 +23,12 @@ function processRequest(url, response) {
 
             response.writeHead(201, {'content-type': 'application/javascript'});
             return response.end(fileContext);
+        } else if (existsSync(resolve('src', 'static', 'html', gettingFileName.getHTMLFileName(url)))) {
+            const filePath = resolve('src', 'static', 'html', gettingFileName.getHTMLFileName(url));
+            const fileContext = readFileSync(filePath).toString();
+
+            response.writeHead(201, {'content-type': 'text/html'});
+            return response.end(fileContext);
         }
     }
 }

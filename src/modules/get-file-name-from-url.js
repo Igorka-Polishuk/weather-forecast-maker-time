@@ -6,4 +6,8 @@ function getJSFilename(url) {
     return url.slice(4);
 }
 
-module.exports = { getCSSFileName, getJSFilename };
+function getHTMLFileName(url) {
+    return url.slice(6);
+}
+
+module.exports = { getCSSFileName, getJSFilename, getHTMLFileName };

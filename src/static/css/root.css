@@ -15,6 +15,12 @@
 html,
 body { height: 100%; }
 
+ul,
+ol { list-style-type: none  ; }
+
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
 .wrapper {
     min-height: 100%;
     color: var(--primary-fond-color);
