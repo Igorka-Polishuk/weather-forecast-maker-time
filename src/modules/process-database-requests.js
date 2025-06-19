@@ -34,12 +34,22 @@ class SQLiteSystem {
                     );    
                 `);
                 await this.#database.run(`
-                    CREATE TABLE cities (
+                    CREATE TABLE recent_cities (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         user_id INTEGER NOT NULL,
                         city_name VARCHAR(128) NOT NULL,
 
-                        FOREIGN KEY (user_id) REFERENCES users(login)
+                        FOREIGN KEY (user_id) REFERENCES users(id)
+                    );    
+                `);
+
+                await this.#database.run(`
+                    CREATE TABLE archived_cities (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        user_id INTEGER NOT NULL,
+                        city_name VARCHAR(128) NOT NULL
+
+                        FOREIGN KEY (user_id) REFERENCES users(id);
                     );    
                 `);
 
