@@ -1,0 +1,20 @@
+@media all and (max-width: 700px) {
+    .header__form {
+        display: flex;
+        flex-direction: column;
+
+        & select {
+            padding: 10px 0;
+            font-size: 22px;
+        }
+    }
+
+    .weather__info {
+        height: max-content;
+    }
+
+    .weather__info__addiction {
+        display: flex;
+        flex-direction: column;
+    }
+}
